@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +23,8 @@ public class Loginpage {
     WebDriver ldriver;
 
     public Loginpage(WebDriver rdriver) {
+    	
+    	
         ldriver = rdriver;
         PageFactory.initElements(rdriver, this);
     }
@@ -38,7 +41,7 @@ public class Loginpage {
     @FindBy(id = "item_4_title_link")
     WebElement productlink;
 
-    @FindBy(id = "add-to-cart")
+    @FindBy(xpath = "(//button[contains(text(),\"Add\")])[1]")
     WebElement Addtocart;
 
     @FindBy(xpath = "//*[@id=\"shopping_cart_container\"]/a")
@@ -70,7 +73,16 @@ public class Loginpage {
 
     @FindBy(xpath = "//*[@id=\"header_container\"]/div[2]/div/span/select")
     WebElement filt;
+    
+    @FindBy(xpath = "(//button[contains(text(),'Remove')])[1]")
+    WebElement remove;
 
+    
+    public void verifyDelete() {
+    	Assert.assertTrue(remove.isDisplayed());
+    }
+    
+    
     public void setUserName(String uName) {
         txtUsername.sendKeys(uName);
     }

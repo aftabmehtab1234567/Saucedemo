@@ -22,8 +22,7 @@ public class Testdata extends Base {
         Thread.sleep(3000);
         lp1.clickAddproduct();
         Thread.sleep(3000);
-        WebElement remove = driver.findElement(By.id("remove"));
-        Assert.assertTrue(remove.isDisplayed());
+        lp1.verifyDelete();  
     }
 
     @Test(priority = 2)
